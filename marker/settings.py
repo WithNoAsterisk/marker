@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     EXTRACT_IMAGES: bool = True # Extract images from pdfs and save them
     PAGINATE_OUTPUT: bool = False # Paginate output markdown
 
+    #Tables
+    TABLES2IMG: bool = True 
+
     @computed_field
     @property
     def TORCH_DEVICE_MODEL(self) -> str:

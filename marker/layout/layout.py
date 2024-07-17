@@ -23,6 +23,13 @@ def surya_layout(doc, pages: List[Page], layout_model, batch_multiplier=1):
     processor = layout_model.processor
     layout_results = batch_layout_detection(images, layout_model, processor, detection_results=text_detection_results, batch_size=int(get_batch_size() * batch_multiplier))
     for page, layout_result in zip(pages, layout_results):
+        if settings.TABLES2IMG:
+            for layout in layout_result:
+                for label in  layout.bboxes.label:
+                    if label == "Table":
+                        label =  "Picture"
+                    else:
+                        pass
         page.layout = layout_result
 
 
