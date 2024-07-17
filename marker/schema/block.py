@@ -68,11 +68,6 @@ class Block(BboxElement):
             new_spans = []
             for span in line.spans:
                 if self.block_type not in settings.BAD_SPAN_TYPES:
-                    if settings.TABLES2IMG:
-                        if self.block_type == "Table":
-                            self.block_type =  "Picture"
-                        else:
-                            pass
                     new_spans.append(span)
             line.spans = new_spans
             if len(new_spans) > 0:
