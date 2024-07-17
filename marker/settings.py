@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     PDFTEXT_CPU_WORKERS: int = 4 # How many CPU workers to use for pdf text extraction
 
     # Text line Detection
-    DETECTOR_BATCH_SIZE: Optional[int] = None # Defaults to 6 for CPU, 12 otherwise
+    DETECTOR_BATCH_SIZE: Optional[int] = 1 # Defaults to 6 for CPU, 12 otherwise
     SURYA_DETECTOR_DPI: int = 96
     DETECTOR_POSTPROCESSING_CPU_WORKERS: int = 4
 
@@ -50,7 +50,7 @@ class Settings(BaseSettings):
 
     ## Surya
     SURYA_OCR_DPI: int = 96
-    RECOGNITION_BATCH_SIZE: Optional[int] = None # Batch size for surya OCR defaults to 64 for cuda, 32 otherwise
+    RECOGNITION_BATCH_SIZE: Optional[int] = 1 # Batch size for surya OCR defaults to 64 for cuda, 32 otherwise
 
     ## Tesseract
     OCR_PARALLEL_WORKERS: int = 2 # How many CPU workers to use for OCR
@@ -61,7 +61,7 @@ class Settings(BaseSettings):
     TEXIFY_MODEL_MAX: int = 384 # Max inference length for texify
     TEXIFY_TOKEN_BUFFER: int = 256 # Number of tokens to buffer above max for texify
     TEXIFY_DPI: int = 96 # DPI to render images at
-    TEXIFY_BATCH_SIZE: Optional[int] = None # Defaults to 6 for cuda, 12 otherwise
+    TEXIFY_BATCH_SIZE: Optional[int] = 1 # Defaults to 6 for cuda, 12 otherwise
     TEXIFY_MODEL_NAME: str = "vikp/texify"
 
     # Layout model
@@ -69,15 +69,15 @@ class Settings(BaseSettings):
     BAD_SPAN_TYPES: List[str] = ["Caption", "Footnote", "Page-footer", "Page-header", "Picture"]
     LAYOUT_MODEL_CHECKPOINT: str = "vikp/surya_layout3"
     BBOX_INTERSECTION_THRESH: float = 0.7 # How much the layout and pdf bboxes need to overlap to be the same
-    LAYOUT_BATCH_SIZE: Optional[int] = None # Defaults to 12 for cuda, 6 otherwise
+    LAYOUT_BATCH_SIZE: Optional[int] = 1 # Defaults to 12 for cuda, 6 otherwise
 
     # Ordering model
     SURYA_ORDER_DPI: int = 96
-    ORDER_BATCH_SIZE: Optional[int] = None  # Defaults to 12 for cuda, 6 otherwise
+    ORDER_BATCH_SIZE: Optional[int] = 1  # Defaults to 12 for cuda, 6 otherwise
     ORDER_MAX_BBOXES: int = 255
 
     # Final editing model
-    EDITOR_BATCH_SIZE: Optional[int] = None # Defaults to 6 for cuda, 12 otherwise
+    EDITOR_BATCH_SIZE: Optional[int] = 1 # Defaults to 6 for cuda, 12 otherwise
     EDITOR_MAX_LENGTH: int = 1024
     EDITOR_MODEL_NAME: str = "vikp/pdf_postprocessor_t5"
     ENABLE_EDITOR_MODEL: bool = False # The editor model can create false positives
