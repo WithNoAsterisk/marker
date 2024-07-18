@@ -7,7 +7,10 @@ from marker.settings import settings
 
 def find_image_blocks(page):
     image_blocks = []
-    image_regions = [l.bbox for l in page.layout.bboxes if l.label in ["Figure", "Picture"]]
+    if settings.TABLES2IMG:
+        image_regions = [l.bbox for l in page.layout.bboxes if l.label in ["Figure", "Picture", "Table"]]
+    else:
+        image_regions = [l.bbox for l in page.layout.bboxes if l.label in ["Figure", "Picture"]]
     image_regions = [rescale_bbox(page.layout.image_bbox, page.bbox, b) for b in image_regions]
 
     insert_points = {}

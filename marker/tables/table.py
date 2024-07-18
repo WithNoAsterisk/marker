@@ -114,11 +114,9 @@ def format_tables(pages: List[Page]):
 
 
         if settings.TABLES2IMG:
-            for b in page.layout.bboxes:
-                if b.label == "Table":
-                    b.label == "Picture"
-            continue
-        page_table_boxes = [b for b in page.layout.bboxes if b.label == "Table"]
+            page_table_boxes = []
+        else:
+            page_table_boxes = [b for b in page.layout.bboxes if b.label == "Table"]
         page_table_boxes = [rescale_bbox(page.layout.image_bbox, page.bbox, b.bbox) for b in page_table_boxes]
         for table_idx, table_box in enumerate(page_table_boxes):
             for block_idx, block in enumerate(page.blocks):
